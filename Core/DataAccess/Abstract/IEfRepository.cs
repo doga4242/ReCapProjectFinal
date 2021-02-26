@@ -20,6 +20,8 @@ namespace Core.DataAccess.Abstract
         void Add(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
+
+
         
     }
 }

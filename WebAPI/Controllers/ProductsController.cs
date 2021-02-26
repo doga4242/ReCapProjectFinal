@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+      
 
         ICarService _carServiceManager; 
 
@@ -25,6 +26,7 @@ namespace WebAPI.Controllers
         {
             _carServiceManager = carService;
         }
+
 
         [HttpGet("getall")]
         public IActionResult Get()
@@ -64,6 +66,8 @@ namespace WebAPI.Controllers
               return BadRequest(result);
 
         }
+        
+        
 
     }
 

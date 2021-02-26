@@ -18,6 +18,14 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<CarServiceManager>().As<ICarService>().SingleInstance();
             builder.RegisterType<CarDal>().As<ICarDal>().SingleInstance();
+            builder.RegisterType<UserServiceManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<UserDal>().As<IUserDal>().SingleInstance();           
+            builder.RegisterType<CustomerServiceManager>().As<ICustomerService>().SingleInstance();
+            builder.RegisterType<CustomerDal>().As<ICustomerDal>().SingleInstance();
+            builder.RegisterType<RentCarServiceManager>().As<IRentCarService>().SingleInstance();
+            builder.RegisterType<RentalDal>().As<IRentalDal>().SingleInstance();
+
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
