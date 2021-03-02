@@ -76,6 +76,14 @@ namespace Core.DataAccess.Concrete
             }
         }
 
+        public List<TEntity> GetRentedCarDetails(Expression<Func<TEntity, bool>> filter)
+        {
+            using(TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Where(filter).ToList();
+            }
+        }
+
         public void Update(TEntity entity)
         {
             using(TContext context = new TContext())

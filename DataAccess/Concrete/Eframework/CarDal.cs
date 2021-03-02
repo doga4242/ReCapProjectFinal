@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.Eframework
    public class CarDal:EfRepositoryBase<Car,EfDataContext>,ICarDal
     {
 
-        public List<DetailCar> GetCarDetails()
+        public List<DetailCar> GetCarDetails(string Id)
         {
 
            

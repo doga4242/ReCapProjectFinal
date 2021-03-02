@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : ControllerBase
     {
         IUserService _userService;
@@ -15,6 +17,19 @@ namespace WebAPI.Controllers
         public UsersController(IUserService userService)
         {
             _userService = userService;
+        }
+        [HttpGet("getusers")]
+        public IActionResult Get()
+        {
+            var result = _userService.GetAll();
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else
+              return BadRequest(result.Masseges);
+
         }
 
         [HttpPost("signin")]

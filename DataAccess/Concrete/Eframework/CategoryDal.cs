@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.Concrete;
+using DataAccess.Abstract.IEframework;
 using Entities.Abstract;
 using Entities.Concrete;
 using System;

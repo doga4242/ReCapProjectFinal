@@ -35,6 +35,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IDataResult <List<User>> GetAll()
+        {
+            _userService.GetAll();
+
+            return new SuccessDataResult<List<User>>();
+        }
+
         public IResult Update(User user)
         {
             _userService.Update(user);

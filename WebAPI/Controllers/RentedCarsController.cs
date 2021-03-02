@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class RentedCarsController : ControllerBase
 
     {
@@ -17,8 +19,22 @@ namespace WebAPI.Controllers
         {
             _rentCarService = rentCarService;
         }
+
+        [HttpGet("getrentals")]
+        public IActionResult Get()
+        {
+            var result = _rentCarService.GetAll();
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else
+                return BadRequest(result.Masseges);
+        }
+
         [HttpPost("rentaladd")]
-        public IActionResult Post(RentedCar rentedCar)
+        public IActionResult Post(Rental rentedCar)
         {
             var result = _rentCarService.Add(rentedCar);
 
@@ -34,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getrentedcardetails")]
-        public IActionResult Get()
+        public IActionResult Get(string Id)
         {
-            var result = _rentCarService.GetAll();
+            var result = _rentCarService.GetRentedCarDetails(Id);
 
             if (result.Success)
             {

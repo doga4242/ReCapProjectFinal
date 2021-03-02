@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Abstract
+namespace DataAccess.Abstract.IEframework
 {
    public interface ICategoryDal:IEfRepository<Category>
     {

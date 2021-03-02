@@ -20,7 +20,7 @@ namespace Core.DataAccess.Abstract
         void Add(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);
-
+        List<TEntity> GetRentedCarDetails(Expression<Func<TEntity, bool>> filter);
 
         
     }

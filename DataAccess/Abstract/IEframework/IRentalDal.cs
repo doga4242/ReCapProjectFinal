@@ -7,7 +7,8 @@ using System.Text;
 
 namespace DataAccess.Abstract.IEframework
 {
-   public interface IRentalDal:IEfRepository<RentedCar>
+   public interface IRentalDal:IEfRepository<Rental>
+      
     {
        
 

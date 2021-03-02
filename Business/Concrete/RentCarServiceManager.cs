@@ -20,7 +20,7 @@ namespace Business.Concrete
         }
          
         [ValidationAspect(typeof(CustomerValidator))]
-        public IResult Add(RentedCar rentedCar)
+        public IResult Add(Rental rentedCar)
         {
             
 
@@ -35,21 +35,28 @@ namespace Business.Concrete
    
         }
 
-        public IResult Delete(RentedCar rentedCar)
+        public IResult Delete(Rental rentedCar)
         {
             _rentCarService.Delete(rentedCar);
 
             return new SuccessResult();
         }
 
-        public IDataResult<List<RentedCar>> GetAll()
+        public IDataResult<List<Rental>> GetAll()
         {
             _rentCarService.GetAll();
 
-            return new SuccessDataResult<List<RentedCar>>();
+            return new SuccessDataResult<List<Rental>>();
         }
 
-        public IResult Update(RentedCar rentedCar)
+        public IDataResult<List<DetailRental>> GetRentedCarDetails(string Id)
+        {
+            _rentCarService.GetRentedCarDetails(Id);
+
+            return new SuccessDataResult<List<DetailRental>>();
+        }
+
+        public IResult Update(Rental rentedCar)
         {
             _rentCarService.Update(rentedCar);
 
