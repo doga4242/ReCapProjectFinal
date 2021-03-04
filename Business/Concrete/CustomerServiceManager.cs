@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Constants;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
+using DataAccess.Abstract.IEframework;
 using Entities.Abstract;
 using Entities.Concrete;
 using System;
@@ -13,32 +15,46 @@ namespace Business.Concrete
 {
     public class CustomerServiceManager : ICustomerService
     {
-        ICustomerService _customerService;
+        ICustomerDal _customerDal;
 
-        public CustomerServiceManager(ICustomerService customerService)
+        public CustomerServiceManager(ICustomerDal customerDal)
         {
-            _customerService = customerService;
+            _customerDal = customerDal;
         }
-        [ValidationAspect(typeof(CustomerValidator))]
+
         public IResult Add(Customer customer)
         {
-            _customerService.Add(customer);
+            _customerDal.Add(customer);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsAdded);
         }
 
         public IResult Delete(Customer customer)
         {
-            _customerService.Delete(customer);
+            _customerDal.Delete(customer);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsDeleted);
+        }
+
+        public IDataResult<List<Customer>> GetAll()
+        {
+            
+
+            return new SuccessDataResult<List<Customer>>(_customerDal.Getall(),true,MessagesSuccess.CarsListed);
+        }
+
+        public IDataResult<Customer> GetById(int Id)
+        {
+            
+
+            return new SuccessDataResult<Customer>(_customerDal.GetById(i => i.UserId == Id),true,MessagesSuccess.UserUpdated);
         }
 
         public IResult Update(Customer customer)
         {
-            _customerService.Update(customer);
+            _customerDal.Update(customer);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsUpdated);
         }
     }
 }

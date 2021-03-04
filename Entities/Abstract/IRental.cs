@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.IDto
+namespace Entities.Abstract
 {
-   public interface IRentalCarDTO:IEntity
+   public interface IRental:IEntity
     {
     }
 }

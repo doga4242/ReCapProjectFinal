@@ -8,7 +8,7 @@ namespace DataAccess.Concrete.Eframework
 {
     public class RentalDal : EfRepositoryBase<Rental, EfDataContext>, IRentalDal
     {
-       public List<DetailRental> GetRentedCarDetails()
+       public List<DetailRental> GetRentedCarDetails(int id)
         {
 
             using(EfDataContext context=new EfDataContext())

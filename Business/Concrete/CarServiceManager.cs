@@ -29,14 +29,14 @@ namespace Business.Concrete
         {
             _carDal.Add(car);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsAdded);
         }
 
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
@@ -46,22 +46,22 @@ namespace Business.Concrete
            
         }
 
-        public IDataResult<List<Car>> GetByBrandId(string ıd)
+        public IDataResult<List<Car>> GetByBrandId(int ıd)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetByBrandId(c=>c.BrandId==ıd),true,MessagesSuccess.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetByCategoryId(string ıd)
+        public IDataResult<List<Car>> GetByCategoryId(int ıd)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetByCategoryId(c=>c.CategoryId==ıd),true,MessagesSuccess.CarsListed);
         }
 
-        public IDataResult<List<Car>> GetByColorId(string ıd)
+        public IDataResult<List<Car>> GetByColorId(int ıd)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetByColorId(c=>c.ColorId==ıd),true,MessagesSuccess.CarsListed);
         }
 
-        public IDataResult<Car> GetById(string Id)
+        public IDataResult<Car> GetById(int Id)
         {
             return new SuccessDataResult<Car>(_carDal.GetById(c=>c.Id==Id),true,MessagesSuccess.CarsListed);
         }
@@ -70,7 +70,7 @@ namespace Business.Concrete
         {
             _carDal.Update(car);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsUpdated);
         }
     }
 }

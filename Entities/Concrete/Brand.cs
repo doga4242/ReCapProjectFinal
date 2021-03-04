@@ -9,7 +9,7 @@ namespace Entities.Concrete
    public class Brand:IBrand
     {
 
-        public string BrandId { get; set; }
+        public int BrandId { get; set; }
         public string BrandName { get; set; }
 
 

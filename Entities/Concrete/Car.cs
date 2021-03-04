@@ -10,13 +10,13 @@ namespace Entities.Concrete
         public string Description { get; set; }
         public Decimal DailyPrice { get; set; }
 
-        public string Id { get; set; }
-        public string BrandId { get; set; }
+        public int Id { get; set; }
+        public int BrandId { get; set; }
 
-        public string ColorId  { get; set; }
+        public long ColorId  { get; set; }
         public DateTime ModelYear { get; set; }
 
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
 
 

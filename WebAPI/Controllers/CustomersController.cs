@@ -13,25 +13,20 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-   
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-      
+        IUserService _userService;
 
-        ICarService _carServiceManager; 
-
-        public ProductsController(ICarService carService)
+        public CustomersController(IUserService userService)
         {
-            _carServiceManager = carService;
+            _userService = userService;
         }
-
-
-        [HttpGet("getall")]
+        [HttpGet("getusers")]
         public IActionResult Get()
         {
-            var result = _carServiceManager.GetAll();
+            var result = _userService.GetAll();
 
             if (result.Success)
             {
@@ -40,35 +35,18 @@ namespace WebAPI.Controllers
             else
                 return BadRequest(result.Masseges);
 
-    
         }
-        [HttpGet("getbyid")]
-        public IActionResult Get(string Id)
+
+        [HttpPost("signin")]
+        public IActionResult Post(User user)
         {
-            var result = _carServiceManager.GetById(Id);
-
-            if (result.Success)
-                return Ok(result.Data);
-            else
-                return BadRequest(result.Masseges);
-        }
-        [HttpPost("add")]
-        public IActionResult Post(Car car)
-        {
-
-            var result = _carServiceManager.Add(car);
-
+            var result = _userService.Add(user);
             if (result.Success)
             {
                 return Ok(result);
             }
             else
-              return BadRequest(result);
-
+                return BadRequest(result);
         }
-        
-        
-
     }
-
 }

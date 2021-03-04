@@ -1,4 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Concrete;
+using Core.Utilities.Abstract;
+using Core.Utilities.Concrete;
+using DataAccess.Abstract.IEframework;
+using DataAccess.Concrete.Eframework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;

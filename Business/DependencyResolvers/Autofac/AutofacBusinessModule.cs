@@ -16,36 +16,36 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            {
-                //builder.RegisterType<CarServiceManager>().As<ICarService>().SingleInstance();
-                //builder.RegisterType<CarDal>().As<ICarDal>().SingleInstance();
-            }
-            {
-                //builder.RegisterType<BrandServiceManager>().As<IBrandService>().SingleInstance();
-                //builder.RegisterType<BrandDal>().As<IBrandDal>().SingleInstance();
-            }
-            {
-                //builder.RegisterType<CategoryServiceManager>().As<ICategoryService>().SingleInstance();
-                //builder.RegisterType<CategoryDal>().As<ICategoryDal>().SingleInstance();
-            }
-            {
+            
+                builder.RegisterType<CarServiceManager>().As<ICarService>().SingleInstance();
+                builder.RegisterType<CarDal>().As<ICarDal>().SingleInstance();
+            
+            
+                builder.RegisterType<BrandServiceManager>().As<IBrandService>().SingleInstance();
+                builder.RegisterType<BrandDal>().As<IBrandDal>().SingleInstance();
+            
+            
+                builder.RegisterType<CategoryServiceManager>().As<ICategoryService>().SingleInstance();
+                builder.RegisterType<CategoryDal>().As<ICategoryDal>().SingleInstance();
+            
+            
                 builder.RegisterType<RentCarServiceManager>().As<IRentCarService>().SingleInstance();
                 builder.RegisterType<RentalDal>().As<IRentalDal>().SingleInstance();
-            }
-            {
-                //builder.RegisterType<CustomerServiceManager>().As<ICustomerService>().SingleInstance();
-                //builder.RegisterType<CustomerDal>().As<ICustomerDal>().SingleInstance();
-            }
-            {
-                //builder.RegisterType<UserServiceManager>().As<IUserService>().SingleInstance();
-                //builder.RegisterType<UserDal>().As<IUserDal>().SingleInstance();
+            
+            
+                builder.RegisterType<CustomerServiceManager>().As<ICustomerService>().SingleInstance();
+                builder.RegisterType<CustomerDal>().As<ICustomerDal>().SingleInstance();
+            
+            
+                builder.RegisterType<UserServiceManager>().As<IUserService>().SingleInstance();
+                builder.RegisterType<UserDal>().As<IUserDal>().SingleInstance();
 
-            }
-            {
-                //builder.RegisterType<ColorServiceManager>().As<IColorService>().SingleInstance();
-                //builder.RegisterType<ColorDal>().As<IColorDal>().SingleInstance();
-            }
-
+            
+            
+                builder.RegisterType<ColorServiceManager>().As<IColorService>().SingleInstance();
+                builder.RegisterType<ColorDal>().As<IColorDal>().SingleInstance();
+            
+                
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

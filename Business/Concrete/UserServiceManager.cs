@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Constants;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
+using DataAccess.Abstract.IEframework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,41 +14,43 @@ namespace Business.Concrete
 {
     public class UserServiceManager : IUserService
     {
-        IUserService _userService;
+        IUserDal _userDal;
 
-        public UserServiceManager(IUserService userService)
+        public UserServiceManager(IUserDal userDal)
         {
-            _userService = userService;
+            _userDal = userDal;
         }
         [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
-            _userService.Add(user);
+            _userDal.Add(user);
 
-
-
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsAdded);
         }
-
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Delete(User user)
         {
-            _userService.Delete(user);
+            _userDal.Delete(user);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsDeleted);
+        }
+        [ValidationAspect(typeof(UserValidator))]
+        public IDataResult<List<User>> GetAll()
+        {
+
+            return new SuccessDataResult<List<User>>(_userDal.Getall(),true,MessagesSuccess.CarsListed);
         }
 
-        public IDataResult <List<User>> GetAll()
+        public IDataResult<User> GetById(int Id)
         {
-            _userService.GetAll();
-
-            return new SuccessDataResult<List<User>>();
+            return new SuccessDataResult<User>(_userDal.GetById(i => i.Id == Id), true, MessagesSuccess.UserUpdated);
         }
 
         public IResult Update(User user)
         {
-            _userService.Update(user);
+            _userDal.Update(user);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsUpdated);
         }
     }
 }

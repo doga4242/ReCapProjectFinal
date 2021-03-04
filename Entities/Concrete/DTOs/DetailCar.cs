@@ -12,9 +12,9 @@ namespace Entities.Concrete
         public string BrandName { get; set; }
         public Decimal DailyPrice { get; set; }
         public string Desciption { get; set; }
-        public string Id { get; set; }
-        public string BrandId { get; set; }
-        public string ColorId { get; set; }
+        public int Id { get; set; }
+        public int BrandId { get; set; }
+        public int ColorId { get; set; }
         public DateTime ModelYear { get; set; }
 
 

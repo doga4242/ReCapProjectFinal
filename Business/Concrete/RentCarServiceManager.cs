@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Constants;
 using Core.Utilities.Abstract;
 using Core.Utilities.Concrete;
+using DataAccess.Abstract.IEframework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,55 +14,56 @@ namespace Business.Concrete
 {
     public class RentCarServiceManager : IRentCarService
     {
-        IRentCarService _rentCarService;
+        IRentalDal _rentalDal;
 
-        public RentCarServiceManager(IRentCarService rentCarService)
+        public RentCarServiceManager(IRentalDal rentalDal)
         {
-            _rentCarService = rentCarService;
+            _rentalDal = rentalDal;
         }
-         
-        [ValidationAspect(typeof(CustomerValidator))]
-        public IResult Add(Rental rentedCar)
+        [ValidationAspect(typeof(RentedCarValidator))]
+        public IResult Add(Rental rental)
         {
-            
+            _rentalDal.Add(rental);
 
-            if ((rentedCar.ReturnDate) != null)
-            {
-                _rentCarService.Add(rentedCar);
-
-                return new SuccessResult();
-            }
-            else
-                return new ErrorResult();
-   
+            return new SuccessResult(MessagesSuccess.CarsAdded);
         }
 
-        public IResult Delete(Rental rentedCar)
+        public IResult Delete(Rental rental)
         {
-            _rentCarService.Delete(rentedCar);
+            _rentalDal.Delete(rental);
 
-            return new SuccessResult();
+            return new SuccessResult(MessagesSuccess.CarsDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            _rentCarService.GetAll();
+            
 
-            return new SuccessDataResult<List<Rental>>();
+            return new SuccessDataResult<List<Rental>>(_rentalDal.Getall(),true,MessagesSuccess.CarsListed);
         }
 
-        public IDataResult<List<DetailRental>> GetRentedCarDetails(string Id)
+        public IDataResult<Rental> GetById(int id)
         {
-            _rentCarService.GetRentedCarDetails(Id);
-
-            return new SuccessDataResult<List<DetailRental>>();
+            return new SuccessDataResult<Rental>(_rentalDal.GetById(i => i.Id == id), true, MessagesSuccess.CarsListed);
         }
 
-        public IResult Update(Rental rentedCar)
+        public IDataResult<Rental> GetRentalByCustomerId(int id)
         {
-            _rentCarService.Update(rentedCar);
+            return new SuccessDataResult<Rental>(_rentalDal.GetById(i => i.CustomerId == id), true, MessagesSuccess.CarsListed);
+        }
 
-            return new SuccessResult();
+        public IDataResult<List<Rental>> GetRentedCarDetails(int id)
+        {
+
+
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetRentedCarDetails(i=>i.Id==id), true, MessagesSuccess.CarsListed);
+        }
+
+        public IResult Update(Rental rental)
+        {
+            _rentalDal.Update(rental);
+
+            return new SuccessResult(MessagesSuccess.CarsUpdated);
         }
     }
 }

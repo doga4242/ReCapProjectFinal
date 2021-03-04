@@ -15,7 +15,7 @@ namespace Business.ValidationRules.FluentValidation
         public ProductValidator(IValidator validator)
         {
             RuleFor(p => p.Description).NotEmpty().MinimumLength(2);
-            RuleFor(p => p.Id).NotEmpty().GreaterThan((0).ToString());
+            RuleFor(p => p.Id).NotEmpty().GreaterThan((0));
             RuleFor(p => p.CategoryId).NotEmpty().NotEqual(p => p.CategoryId);
             RuleFor(p => p.DailyPrice).NotEmpty().GreaterThan(10);
 
