@@ -13,7 +13,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public int BrandId { get; set; }
 
-        public long ColorId  { get; set; }
+        public int ColorId  { get; set; }
         public DateTime ModelYear { get; set; }
 
         public int CategoryId { get; set; }

@@ -1,11 +1,12 @@
 ﻿using Core.IDto;
+using Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entities.Concrete
 {
-   public class DetailCar:IDetailCar
+   public class DetailCar:ICar
     {
 
         public string ColorName { get; set; }

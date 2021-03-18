@@ -1,5 +1,6 @@
 ﻿using Core.Entity;
 using Core.IDto;
+using Entities.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,9 @@ namespace Entities.Concrete
         public string BrandName { get; set; }
         public DateTime ModelYear { get; set; }
         public int BrandId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
 
 
     }
